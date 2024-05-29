@@ -1,6 +1,6 @@
-#### Project Title- Blogg
+### Project Title: Blogg
 
-#### Description: A blogging platform where you can share your stories with the world.
+### Description: A blogging platform where you can share your stories with the world.
 
 ## Tech Stack
 
