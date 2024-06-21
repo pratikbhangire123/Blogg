@@ -1,10 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import authSliceReducer from "../features/authSlice";
 
-const store = configureStore({
-  reducer: {
-    auth: authSliceReducer,
-  },
+// Created the root reducer separately so we can extract the RootState type.
+
+const rootReducer = combineReducers({
+  auth: authSliceReducer,
 });
 
-export default store;
+const setupStore = (preloadedState = {}) =>
+  configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  });
+
+export default setupStore;

@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`should matches snapshot 1`] = `
+<footer
+  className="w-full p-2 text-center text-xs md:text-sm font-thin text-gray-50 bg-gray-900"
+  data-testid="footer"
+>
+  © Copyright 2024. All Rights Reserved by 
+  <span
+    className="font-normal"
+  >
+    Blogg
+  </span>
+  .
+</footer>
+`;
