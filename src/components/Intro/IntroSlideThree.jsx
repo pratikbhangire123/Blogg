@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "../index.js";
 
 function IntroSlideThree() {
-  const { userData } = useSelector((status) => status.auth.userData);
-
-  console.log(userData);
+  const authStatus = useSelector((state) => state?.auth?.status);
 
   return (
     <section
@@ -21,9 +19,9 @@ function IntroSlideThree() {
         A place where you can share your stories with the world.
       </p>
 
-      <Link to={userData ? "/add-article" : "/signup"}>
+      <Link to={authStatus ? "/add-article" : "/signup"}>
         <Button className="mt-9 md:mt-10 lg:mt-11 xl:mt-12 text-sm md:text-base lg:text-lg xl:text-xl">
-          {userData ? "Write a Story" : "Get Started"}
+          {authStatus ? "Write a Story" : "Get Started"}
         </Button>
       </Link>
     </section>
