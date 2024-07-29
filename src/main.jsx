@@ -15,6 +15,13 @@ import {
   SignUp,
 } from "./pages/index.js";
 import { AuthLayout } from "./components/index.js";
+import { Client } from "appwrite";
+
+const client = new Client();
+
+client
+  .setEndpoint(import.meta.env.VITE_APPWRITE_ENDPOINT)
+  .setProject(import.meta.env.APPWRITE_PROJECT_ID);
 
 const router = createBrowserRouter([
   {
