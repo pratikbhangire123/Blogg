@@ -21,7 +21,12 @@ const client = new Client();
 
 client
   .setEndpoint(import.meta.env.VITE_APPWRITE_ENDPOINT)
-  .setProject(import.meta.env.APPWRITE_PROJECT_ID);
+  .setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID);
+
+console.log(
+  import.meta.env.VITE_APPWRITE_ENDPOINT,
+  import.meta.env.VITE_APPWRITE_PROJECT_ID
+);
 
 const router = createBrowserRouter([
   {
