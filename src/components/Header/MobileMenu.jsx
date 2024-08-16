@@ -18,7 +18,11 @@ export default function MobileMenu() {
 
       {isMenuOpen && (
         <ul className="absolute z-50 top-38 right-4 w-1/2 md:w-1/3 font-light bg-gray-50 rounded shadow-lg">
-          <Menu authStatus={authStatus} className="px-4 py-2 border-b last:border-none border-b-gray-300" />
+          <Menu
+            authStatus={authStatus}
+            setIsMenuOpen={setIsMenuOpen}
+            className="px-4 py-2 border-b last:border-none border-b-gray-300"
+          />
 
           {authStatus && (
             <li className="px-4 py-2">

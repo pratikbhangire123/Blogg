@@ -1,49 +1,23 @@
 import { useEffect, useState } from "react";
 // import { Button } from "../components/index";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import articleService from "../appwrite/config";
 import parse from "html-react-parser";
 import { MdDelete, MdEdit } from "react-icons/md";
+import useArticleService from "../hooks/useArticleService";
 
 export default function Article() {
+  const { readArticle, deleteArticle, getFilePreview } = useArticleService();
   const [article, setArticle] = useState();
   const [articleDate, setArticleDate] = useState();
   const { userData } = useSelector((state) => state.auth.userData);
   const { slug } = useParams();
-  const navigate = useNavigate();
   const isAuthor =
     article && userData ? article.userId === userData.$id : false;
 
   useEffect(() => {
-    if (slug) {
-      articleService.readArticle(slug).then((currentArticle) => {
-        if (currentArticle) {
-          setArticle(currentArticle);
-
-          setArticleDate(
-            new Date(
-              currentArticle.$updatedAt
-                ? currentArticle.$updatedAt
-                : currentArticle.$createdAt
-            )
-          );
-        }
-      });
-    } else {
-      navigate("/");
-    }
-  }, [slug, navigate]);
-
-  const deleteArticle = () => {
-    articleService.deleteArticle(article.$id).then((status) => {
-      if (status) {
-        articleService.deleteFile(article.featuredImage);
-
-        navigate("/");
-      }
-    });
-  };
+    readArticle(slug, setArticle, setArticleDate);
+  }, []);
 
   return article ? (
     <section className="p-8 md:p-12 lg:p-16 xl:p-24">
@@ -61,13 +35,16 @@ export default function Article() {
               </Link>
 
               {/* <Button onClick={deleteArticle}>Delete Article</Button> */}
-              <MdDelete onClick={deleteArticle} className="cursor-pointer" />
+              <MdDelete
+                onClick={() => deleteArticle(article)}
+                className="cursor-pointer"
+              />
             </div>
           </div>
         )}
 
         <img
-          src={articleService.getFilePreview(article.featuredImage)}
+          src={getFilePreview(article.featuredImage)}
           alt={article.title}
           width={500}
           className="mt-6"

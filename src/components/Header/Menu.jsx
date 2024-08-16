@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
-export default function Menu({ authStatus, className }) {
+export default function Menu({ authStatus, setIsMenuOpen, className }) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const navItems = [

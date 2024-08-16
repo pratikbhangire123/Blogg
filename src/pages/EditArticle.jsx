@@ -1,25 +1,16 @@
 import { useEffect, useState } from "react";
 import { ArticleForm } from "../components/index";
-import { useNavigate, useParams } from "react-router-dom";
-import articleService from "../appwrite/config";
+import { useParams } from "react-router-dom";
+import useArticleService from "../hooks/useArticleService";
 
 export default function EditArticle() {
-  const [article, setArticle] = useState(null);
+  const { readArticle } = useArticleService();
+  const [article, setArticle] = useState();
   const { slug } = useParams();
-  const navigate = useNavigate();
 
   useEffect(() => {
-    if (slug) {
-      articleService.readArticle(slug).then((article) => {
-        if (article) {
-          setArticle(article);
-        } else {
-          navigate("/");
-        }
-      });
-    }
-  }, [slug, navigate]);
+    readArticle(slug, setArticle);
+  }, []);
 
   return article ? <ArticleForm article={article} /> : null;
 }
-
