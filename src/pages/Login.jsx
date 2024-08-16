@@ -1,11 +1,5 @@
 import { Login as LoginComponent } from "../components/index";
 
-function Login() {
-  return (
-    <div>
-      <LoginComponent />
-    </div>
-  );
+export default function Login() {
+  return <LoginComponent />;
 }
-
-export default Login;

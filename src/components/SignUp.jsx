@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
-import { Input, Button } from "./index";
+import { Input, Button, UserAccountCard } from "./index";
 import { useState } from "react";
 import authService from "../appwrite/auth";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { login } from "../redux/features/authSlice";
 
-function SignUp() {
+export default function SignUp() {
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState();
   const dispatch = useDispatch();
@@ -34,66 +34,50 @@ function SignUp() {
   };
 
   return (
-    <section className="p-8 md:p-12 lg:p-16 xl:p-24">
-      <div className="flex flex-col md:w-1/2 xl:w-[35vw] items-center justify-center mx-auto p-4 border rounded shadow">
-        <h2 className="text-xl md:text-2xl xl:text-3xl font-bold text-blue-800">
-          Sign Up
-        </h2>
+    <UserAccountCard
+      title="Sign Up"
+      accountAvailability="Already have an account?"
+      linkSlug="/login"
+      linkText="Sign In"
+      error={error}
+      onSubmitHandler={handleSubmit(create)}
+    >
+      <Input
+        label="Full Name:"
+        placeholder="Enter your full name"
+        className="w-full rounded"
+        {...register("name", { required: true })}
+      />
 
-        <p className="mt-2 text-sm md:text-base xl:text-lg">
-          Already have an account?&nbsp;
-          <Link to={"/login"} className="font-semibold underline">
-            Sign In
-          </Link>
-        </p>
+      <Input
+        label="Email:"
+        type="email"
+        placeholder="example@email.com"
+        className="w-full rounded"
+        {...register("email", {
+          required: true,
+          validate: {
+            matchPatern: (value) =>
+              /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+              "Email address must be a valid address",
+          },
+        })}
+      />
 
-        {error && (
-          <p className="mt-2 text-sm md:text-base xl:text-lg text-red-600">
-            {error}
-          </p>
-        )}
+      <Input
+        label="Password:"
+        type="password"
+        placeholder="Enter your password"
+        className="w-full rounded"
+        {...register("password", { required: true })}
+      />
 
-        <form onSubmit={handleSubmit(create)} className="w-full mt-2 px-2">
-          <Input
-            label="Full Name:"
-            placeholder="Enter your full name"
-            className="w-full rounded"
-            {...register("name", { required: true })}
-          />
-
-          <Input
-            label="Email:"
-            type="email"
-            placeholder="example@email.com"
-            className="w-full rounded"
-            {...register("email", {
-              required: true,
-              validate: {
-                matchPatern: (value) =>
-                  /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                  "Email address must be a valid address",
-              },
-            })}
-          />
-
-          <Input
-            label="Password:"
-            type="password"
-            placeholder="Enter your password"
-            className="w-full rounded"
-            {...register("password", { required: true })}
-          />
-
-          <Button
-            type="submit"
-            className="block mx-auto mt-5 lg:mt-7 xl:mt-8 text-sm md:text-base xl:text-xl"
-          >
-            Sign Up
-          </Button>
-        </form>
-      </div>
-    </section>
+      <Button
+        type="submit"
+        className="block mx-auto mt-5 lg:mt-7 xl:mt-8 text-sm md:text-base xl:text-xl"
+      >
+        Sign Up
+      </Button>
+    </UserAccountCard>
   );
 }
-
-export default SignUp;

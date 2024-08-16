@@ -1,11 +1,6 @@
 import { SignUp as SignUpComponent } from "../components/index";
 
-function SignUp() {
-  return (
-    <div>
-      <SignUpComponent />
-    </div>
-  );
+export default function SignUp() {
+  return <SignUpComponent />;
 }
 
-export default SignUp;

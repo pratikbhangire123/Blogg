@@ -2,14 +2,14 @@ import articleService from "../appwrite/config";
 import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 
-function ArticleCard({ $id, title, featuredImage, description }) {
+export default function ArticleCard({ $id, title, featuredImage, description }) {
   return (
     <Link to={`/article/${$id}`}>
       <div className="flex flex-col lg:flex-row max-w-sm md:max-w-xs lg:max-w-none lg:justify-between border lg:border-none rounded lg:rounded-none shadow-md lg:shadow-none">
         <div className="px-4 pt-2 lg:pt-4 pb-4 ">
-          <h2 className="mt-1 lg:mt-0 md:text-lg xl:text-xl font-bold text-gray-800">
+          <h3 className="mt-1 lg:mt-0 md:text-lg xl:text-xl font-bold text-gray-800">
             {title}
-          </h2>
+          </h3>
 
           <p className="mt-1 text-sm md:text-base xl:text-lg line-clamp-2 lg:line-clamp-3 text-gray-600">
             {parse(description)}
@@ -27,5 +27,3 @@ function ArticleCard({ $id, title, featuredImage, description }) {
     </Link>
   );
 }
-
-export default ArticleCard;

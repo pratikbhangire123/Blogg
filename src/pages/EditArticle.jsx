@@ -3,7 +3,7 @@ import { ArticleForm } from "../components/index";
 import { useNavigate, useParams } from "react-router-dom";
 import articleService from "../appwrite/config";
 
-function EditArticle() {
+export default function EditArticle() {
   const [article, setArticle] = useState(null);
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -20,11 +20,6 @@ function EditArticle() {
     }
   }, [slug, navigate]);
 
-  return article ? (
-    <div>
-      <ArticleForm article={article} />
-    </div>
-  ) : null;
+  return article ? <ArticleForm article={article} /> : null;
 }
 
-export default EditArticle;

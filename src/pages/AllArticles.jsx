@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ArticleCard } from "../components/index";
 import articleService from "../appwrite/config";
 
-function AllArticles() {
+export default function AllArticles() {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
@@ -27,5 +27,3 @@ function AllArticles() {
     </section>
   );
 }
-
-export default AllArticles;

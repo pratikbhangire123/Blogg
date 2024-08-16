@@ -6,7 +6,7 @@ import articleService from "../appwrite/config";
 import parse from "html-react-parser";
 import { MdDelete, MdEdit } from "react-icons/md";
 
-function Article() {
+export default function Article() {
   const [article, setArticle] = useState();
   const [articleDate, setArticleDate] = useState();
   const { userData } = useSelector((state) => state.auth.userData);
@@ -78,5 +78,3 @@ function Article() {
     </section>
   ) : null;
 }
-
-export default Article;

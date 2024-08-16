@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import articleService from "../../appwrite/config";
 import { Button, Input, RealTimeEditor, Select } from "../index";
 
-function ArticleForm({ article }) {
+export default function ArticleForm({ article }) {
   const navigate = useNavigate();
   const { userData } = useSelector((state) => state.auth.userData);
   const { register, handleSubmit, watch, setValue, control, getValues } =
@@ -145,5 +145,3 @@ function ArticleForm({ article }) {
     </section>
   );
 }
-
-export default ArticleForm;

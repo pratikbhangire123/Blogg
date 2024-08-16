@@ -2,7 +2,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { Controller } from "react-hook-form";
 import conf from "../conf/conf";
 
-function RealTimeEditor({ label, name, control, defaultValue = "" }) {
+export default function RealTimeEditor({ label, name, control, defaultValue = "" }) {
   return (
     <div className="mt-2">
       {label && <label className="mb-1">{label}</label>}
@@ -41,5 +41,3 @@ function RealTimeEditor({ label, name, control, defaultValue = "" }) {
     </div>
   );
 }
-
-export default RealTimeEditor;

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-function AuthLayout({ children, authentication = true }) {
+export default function AuthLayout({ children, authentication = true }) {
   const authStatus = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -19,5 +19,3 @@ function AuthLayout({ children, authentication = true }) {
 
   return loading ? <div>Loading...</div> : <>{children}</>;
 }
-
-export default AuthLayout;

@@ -4,7 +4,7 @@ import {
   IntroSlideTwo,
 } from "../components/index";
 
-function Home() {
+export default function Home() {
   return (
     <>
       <IntroSlideOne />
@@ -14,4 +14,3 @@ function Home() {
   );
 }
 
-export default Home;

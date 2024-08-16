@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import setupStore from "./redux/store/store.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
-  AddArticle,
+  WriteArticle,
   AllArticles,
   Article,
   EditArticle,
@@ -57,10 +57,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/add-article",
+        path: "/write-article",
         element: (
           <AuthLayout authentication>
-            <AddArticle />
+            <WriteArticle />
           </AuthLayout>
         ),
       },

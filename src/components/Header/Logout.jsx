@@ -3,7 +3,7 @@ import authService from "../../appwrite/auth";
 import { logout } from "../../redux/features/authSlice";
 import { Button } from "../index";
 
-function Logout() {
+export default function Logout() {
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
@@ -15,4 +15,3 @@ function Logout() {
   return <Button onClick={logoutHandler} className="text-lg">Logout</Button>;
 }
 
-export default Logout;
